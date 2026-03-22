@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+body{
+  background:#0f0f1a;
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* LOGIN */
+#login{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+input,button{
+  padding:10px;
+  border-radius:20px;
+  border:none;
+  margin-top:10px;
+}
+
+/* MAIN */
+#main{display:none;padding:20px;}
+
+h1{margin:20px 0;}
+
+#letter{
+  max-width:700px;
+  margin:auto;
+  font-size:18px;
+  line-height:1.8;
+  white-space:pre-line;
+  border-right:2px solid white;
+  display:inline-block;
+  padding-right:5px;
+}
+
+/* GALLERY */
+.gallery{
+  margin-top:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+}
+
+.gallery img{
+  width:100%;
+  border-radius:15px;
+  height:250px;
+  object-fit:cover;
+}
+
+/* HEART */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  animation:float 7s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0);opacity:0;}
+  20%{opacity:1;}
+  100%{transform:translateY(-100vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <h2>Masukkan password ❤️</h2>
+  <input type="password" id="pass">
+  <button onclick="login()">Masuk</button>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <h1>Untuk Kamu ❤️</h1>
+
+  <div id="letter"></div>
+
+  <div class="gallery">
+    <img src="1.jpg">
+    <img src="2.jpg">
+    <img src="3.jpg">
+    <img src="4.jpg">
+    <img src="5.jpg">
+    <img src="6.jpg">
+  </div>
+</div>
+
+<audio id="music" loop>
+  <source src="music.mp3">
+</audio>
+
+<script>
+const text = `Aku nggak tau harus mulai dari mana...
+
+Tapi sejak kamu datang,
+semua hal kecil jadi berarti.
+
+Aku mungkin bukan yang terbaik,
+aku juga sering salah...
+
+Tapi satu hal yang nggak pernah berubah,
+aku selalu milih kamu.
+
+Di setiap hari yang berat,
+di setiap rasa capek,
+aku tetap bersyukur… karena ada kamu.
+
+Kalau suatu hari kamu ngerasa sendirian,
+ingat ya...
+
+kamu punya aku. ❤️`;
+
+let i = 0;
+
+function typeWriter(){
+  if(i < text.length){
+    document.getElementById("letter").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 40);
+  }
+}
+
+function login(){
+  let p=document.getElementById("pass").value;
+  if(p==="sayang"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("main").style.display="block";
+    document.getElementById("music").play();
+    setTimeout(typeWriter, 1000);
+  }else{
+    alert("Salah 😢");
+  }
+}
+
+/* HEART */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(Math.random()*15+10)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+},500);
+</script>
+
+</body>
+</html>
